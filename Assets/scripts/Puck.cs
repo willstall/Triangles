@@ -11,6 +11,8 @@ public class Puck : MonoBehaviour {
 	float anim = 1f;
 	Transform ring;
 
+	public AudioClip[] scores;
+
 	// Use this for initialization
 	void Start () {
 		collection = this.GetComponent<ForceField>().Collection();
@@ -22,6 +24,8 @@ public class Puck : MonoBehaviour {
 		number = collection.Count;
 		if (number>number_p){
 			anim = 0f;
+			AudioClip clip = scores[Mathf.FloorToInt(((float)scores.Length*Random.value))];
+			AudioSource.PlayClipAtPoint(clip,this.transform.position);
 		}
 
 		anim += (1f-anim)*.08f;
