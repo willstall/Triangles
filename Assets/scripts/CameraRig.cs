@@ -19,6 +19,7 @@ public class CameraRig : MonoBehaviour
 	Vector3 originalLocalPosition;
 	Vector3 mouseNormal = Vector3.zero;
 	float currentPos = 0f;
+	float shoot = 0f;
 
 	Quaternion originalRotation;
 
@@ -50,7 +51,12 @@ public class CameraRig : MonoBehaviour
 		//Quaternion toRotation = Quaternion.LookRotation(lookPos);
 
 		//transform.localRotation = toRotation;//Quaternion.Slerp(transform.localRotation, toRotation, zAccel);
+		this.transform.position =new Vector3(this.transform.position.x,this.transform.position.y,Mathf.Lerp(-10f,-11f,shoot));
+		shoot += (0f-shoot)*.08f;
+	}
 
+	public void Shoot(){
+		shoot = 1f;
 	}
 
 }
