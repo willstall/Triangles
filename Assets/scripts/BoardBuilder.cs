@@ -23,6 +23,7 @@ public class BoardBuilder : MonoBehaviour {
 			box.transform.Rotate(new Vector3(0f,0f,(float)i/(float)quality*360f));
 			box.transform.localScale = new Vector3(scale,scale,scale);
 		}
+		this.gameObject.transform.localScale = new Vector3(radius/10f,radius/10f,radius/10f);
 	}
 	
 	// Update is called once per frame
