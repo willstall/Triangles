@@ -79,6 +79,10 @@ namespace ForceFields
 	    {
 	       return ((mask.value & (1 << obj.layer)) > 0);
 	    }
+
+	    public List<Rigidbody> Collection(){
+	    	return rigidbodies;
+	    } 
 	}
 
 }

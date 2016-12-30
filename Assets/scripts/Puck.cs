@@ -1,23 +1,32 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using ForceFields;
 
 public class Puck : MonoBehaviour {
 	public int goalNumber = 20;
 	int number = 0;
-	//RaycastHit hit;
-	int layerMask = 1 << 6;
-	float radius;
+	int number_p = 0;
+	List<Rigidbody> collection;
+	float anim = 1f;
+	Transform ring;
+
 	// Use this for initialization
 	void Start () {
-		radius = this.GetComponent<SphereCollider>().radius;
+		collection = this.GetComponent<ForceField>().Collection();
+		ring = this.transform.GetChild(0);
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		RaycastHit[] hits = Physics.SphereCastAll(Vector3.zero,radius,Vector3.zero,0f);
-		number = hits.Length;
+		number = collection.Count;
+		if (number>number_p){
+			anim = 0f;
+		}
 
-		if (number>=goalNumber){Debug.Log("you have "+number+" triangles!!!");}
+		anim += (1f-anim)*.08f;
+		float scale = anim*6f;
+		ring.localScale = scale*Vector3.one;
+		number_p = number;
 	}
 }
