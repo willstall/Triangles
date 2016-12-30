@@ -5,14 +5,16 @@ using UnityEngine;
 public class CameraRig : MonoBehaviour
 {
 	public float xRange = 2f;
+	public float yRange = 1f;
 	[Range(0,1)]
-	public float xAccel = .1f;
+	public float moveAccel = .1f;
 
 	[Space(10)]
 
-	public float yRange = 1f;
+	public float zRange = 2f;
 	[Range(0,1)]
-	public float yAccel = .1f;
+	public float zAccel = .1f;
+	
 
 	Vector3 originalLocalPosition;
 	Vector3 mouseNormal = Vector3.zero;
@@ -34,21 +36,21 @@ public class CameraRig : MonoBehaviour
 
 		Vector3 pos = originalLocalPosition;
 				pos.y += Mathf.Lerp(yRange * -0.5f , yRange * 0.5f, normal.y);
+				pos.x += Mathf.Lerp(xRange * -0.5f , xRange * 0.5f, normal.x);
 
-		transform.localPosition = Vector3.Lerp(transform.localPosition, pos, yAccel);
+		transform.localPosition = Vector3.Lerp(transform.localPosition, pos, moveAccel);
 
 		var targetNormal = transform.forward;
-			targetNormal.z = Mathf.Lerp( xRange * -0.5f, xRange * 0.5f, normal.x);
+			targetNormal.z = Mathf.Lerp( zRange * -0.5f, zRange * 0.5f, normal.x);
 
-		currentPos += (normal.x-currentPos)*xAccel;
+		currentPos += (normal.x-currentPos)*zAccel;
 		transform.localRotation = Quaternion.identity;
-		transform.Rotate(new Vector3(0f,0f,Mathf.Lerp(-xRange,xRange,currentPos)));
+		transform.Rotate(new Vector3(0f,0f,Mathf.Lerp(-zRange,zRange,currentPos)));
 
 		//Quaternion toRotation = Quaternion.LookRotation(lookPos);
 
-		//transform.localRotation = toRotation;//Quaternion.Slerp(transform.localRotation, toRotation, xAccel);
+		//transform.localRotation = toRotation;//Quaternion.Slerp(transform.localRotation, toRotation, zAccel);
 
-		Debug.Log( normal );
 	}
 
 }

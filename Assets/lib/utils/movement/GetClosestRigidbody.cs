@@ -7,6 +7,7 @@ public class GetClosestRigidbody : MonoBehaviour
 	public Rigidbody target;
 	public LayerMask targetLayerMask;
 	public float acquisitionRadius;
+	public bool constantlyUpdateTarget = false;
 
 	public bool debug = false;
 
@@ -14,7 +15,7 @@ public class GetClosestRigidbody : MonoBehaviour
 	void Update () 
 	{
 		
-		if( !target )
+		if(( !target )|| ( constantlyUpdateTarget ))
 		{	
 			Collider[] colliders = Physics.OverlapSphere( transform.position, acquisitionRadius, targetLayerMask );
 
