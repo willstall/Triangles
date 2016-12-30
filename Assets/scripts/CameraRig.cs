@@ -42,7 +42,7 @@ public class CameraRig : MonoBehaviour
 
 		currentPos += (normal.x-currentPos)*xAccel;
 		transform.localRotation = Quaternion.identity;
-		transform.Rotate(new Vector3(0f,0f,Mathf.Lerp(-35f,35f,currentPos)));
+		transform.Rotate(new Vector3(0f,0f,Mathf.Lerp(-xRange,xRange,currentPos)));
 
 		//Quaternion toRotation = Quaternion.LookRotation(lookPos);
 
