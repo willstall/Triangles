@@ -16,9 +16,9 @@ public class ChipSounds : MonoBehaviour {
 		
 	}
 
-	void onCollisionEnter(Collision collision){
-		if (/*collision.relativeVelocity.magnitude > .5f && */!madeSound){
-			Debug.Log("making sound!");
+	void OnCollisionEnter(Collision collision){
+			//Debug.Log("making sound!");
+		if (collision.relativeVelocity.magnitude > .5f && !madeSound){
 			if (collision.gameObject.tag=="Chip"){
 				collision.gameObject.GetComponent<ChipSounds>().madeSound = true;
 				AudioClip clip = chips[Mathf.FloorToInt(((float)chips.Length*Random.value))];
