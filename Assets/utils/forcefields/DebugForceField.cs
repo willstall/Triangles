@@ -12,7 +12,7 @@ namespace ForceFields
 		public Color displayColor = new Color(0.5f, 0.92f, 0.5f);
 		public float displayResolution = 0.5f;
 		public float displayScale = 1;
-		public ForceField[] fields;
+		// public ForceField[] fields;
 
 		[Range(0,1)]
 		public float displayZ = 0.5f;
@@ -41,7 +41,7 @@ namespace ForceFields
 			Gizmos.matrix = transform.localToWorldMatrix;
 			Gizmos.color = displayColor;
 
-			//ForceField[] fields = GetComponents<ForceField>();
+			ForceField[] fields = GetComponents<ForceField>();
 
 			//for( float z = -halfSize.z; z < halfSize.z; z += displayResolution ) {
 

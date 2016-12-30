@@ -54,6 +54,7 @@ public class RingSpawner : MonoBehaviour
 
 
 		GameObject go = Instantiate(objectToInstantiate, randomPosition, Quaternion.identity) as GameObject;
+		go.transform.parent = objectParentTransform;
 		
 		return go;
 	}
