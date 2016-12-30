@@ -16,6 +16,7 @@ public class CameraRig : MonoBehaviour
 
 	Vector3 originalLocalPosition;
 	Vector3 mouseNormal = Vector3.zero;
+	float currentPos = 0f;
 
 	Quaternion originalRotation;
 
@@ -39,14 +40,14 @@ public class CameraRig : MonoBehaviour
 		var targetNormal = transform.forward;
 			targetNormal.z = Mathf.Lerp( xRange * -0.5f, xRange * 0.5f, normal.x);
 
-		Vector3 lookPos = Vector3.forward;
-				lookPos *= xRange * normal.x;
+		currentPos += (normal.x-currentPos)*xAccel;
+		transform.localRotation = Quaternion.identity;
+		transform.Rotate(new Vector3(0f,0f,Mathf.Lerp(-35f,35f,currentPos)));
 
-		Quaternion toRotation = Quaternion.LookRotation(lookPos);
+		//Quaternion toRotation = Quaternion.LookRotation(lookPos);
 
-		transform.localRotation = toRotation;//Quaternion.Slerp(transform.localRotation, toRotation, xAccel);
+		//transform.localRotation = toRotation;//Quaternion.Slerp(transform.localRotation, toRotation, xAccel);
 
-		Debug.Log(lookPos);
 		Debug.Log( normal );
 	}
 
