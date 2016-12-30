@@ -14,7 +14,8 @@ public class Gun : MonoBehaviour {
 		  if (Input.GetButtonDown("Fire1")){
 		  	Vector3 pos = Input.mousePosition;
 		  	pos.z = 10.0f;
-            Instantiate(bullet, Camera.main.ScreenToWorldPoint(pos), Quaternion.identity);
+            GameObject go = Instantiate(bullet, Camera.main.ScreenToWorldPoint(pos), Quaternion.identity) as GameObject;
+            go.transform.parent = transform;
     }
 	}
 }
